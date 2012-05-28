@@ -97,13 +97,13 @@ _MEMinitialize() {
 #endif
 }
 
-void
-MEMinitialize( flh, size, alloc1, alloc2 )
-struct freelist_head * flh;
-int size;           /* size of a single element */
-int alloc1;         /* number to allocate initially */
-int alloc2;         /* number to allocate if we run out */
-{
+/**
+ * \param flh
+ * \param size size of a single element
+ * \param alloc1 number to allocate initially
+ * \param alloc2 number to allocate if we run out
+ */
+void MEMinitialize( struct freelist_head * flh, int size, int alloc1, int alloc2 ) {
     flh->size_elt = size;   /* kludge for calloc-like behavior */
 #ifndef NOSTAT
     flh->alloc = flh->dealloc = flh->create = 0;

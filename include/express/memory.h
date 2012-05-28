@@ -76,16 +76,19 @@ char * nnew();
 extern int yylineno;
 
 /** CALLOC grabs and initializes to all 0s space for the indicated
- * number of instances of the indicated type */
+ * number of instances of the indicated type
+ *
+ * only used in express/hash.c
+ */
 #define CALLOC(ptr, num, type)                  \
     if (((ptr) = (type*)calloc((num), (unsigned)sizeof(type)))==NULL) { \
         fprintf(stderr,"fedex: out of space");\
     } else {}
 
-SCL_EXPRESS_EXPORT void    _MEMinitialize PROTO( ( void ) );
-SCL_EXPRESS_EXPORT void    MEMinitialize PROTO( ( struct freelist_head *, int, int, int ) );
-SCL_EXPRESS_EXPORT void    MEM_destroy PROTO( ( struct freelist_head *, Freelist * ) );
-SCL_EXPRESS_EXPORT Generic MEM_new PROTO( ( struct freelist_head * ) );
+SCL_EXPRESS_EXPORT void    _MEMinitialize ( void );
+SCL_EXPRESS_EXPORT void    MEMinitialize( struct freelist_head * flh, int size, int alloc1, int alloc2 );
+SCL_EXPRESS_EXPORT void    MEM_destroy ( struct freelist_head *, Freelist * );
+SCL_EXPRESS_EXPORT Generic MEM_new ( struct freelist_head * );
 
 #include "de_end.h"
 
