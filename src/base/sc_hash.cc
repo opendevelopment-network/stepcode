@@ -35,21 +35,23 @@ GLOBAL SCL_BASE_EXPORT struct freelist_head HASH_Element_fl;
 
 ///unused extern  Hash_Table HASHcopy ( Hash_Table oldtable );
 
-typedef std::map< std::string, void * > HashTable;
+//FIXME this shouldn't be void *
+typedef std::map< std::string, Element > HashTable;
 std::vector< HashTable > HashTables; //NOTE Hash_Table, when passed, is always one larger than the index of the referenced table. This is so that 0 can still be used for errors.
 
+///initialize
 void HASHinitialize () {
     HashTables.clear();
 }
 
-//create a hash table, return the id. count was initial size; don't bother?
+///create a hash table, return the id. count was initial size; don't bother?
 Hash_Table HASHcreate ( unsigned int count ) {
     HashTable * h = new HashTable;
     HashTables.push_back(*h);
     return HashTables.size(); //this is one larger than the index. this way, zero can be returned on error.
 }
 
-//delete one hashtable
+///delete one hashtable
 void HASHdestroy ( Hash_Table table ) {
     HashTables.erase(HashTables.begin()+table-1);
 }
@@ -70,17 +72,20 @@ Element HASHsearch ( Hash_Table table, Element item, Action action) {
 
 /**
  * initialize pointer to beginning of hash table so we can
- * step through it on repeated calls to HASHlist - DEL
+ * step through it on repeated calls to HASHlist
  */
 void HASHlistinit ( Hash_Table table, HashEntry * he ) {
     //TODO
+    //HashTables[table].iterator it;
+    he->table = table;
+    he->pos = 0;
 }
 
 void HASHlistinit_by_type ( Hash_Table table, HashEntry * he, char type) {
     //TODO
 }
 
-/* provide a way to step through the hash */
-Element HASHlist ( HashEntry * he) { ///result must be stored in he.e!
+/// provide a way to step through the hash table. he tracks the position.
+Element HASHlist ( HashEntry * he) { ///result must be stored in he.e as well as being returned!
     //TODO
 }

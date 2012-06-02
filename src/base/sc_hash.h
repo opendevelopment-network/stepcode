@@ -33,9 +33,9 @@ typedef enum { HASH_FIND, HASH_INSERT, HASH_DELETE } Action;
 /****************/
 
 typedef struct Element_ {
-    char    *    key;
+    //char    *    key;
     char    *    data;
-    struct Element_ * next;
+    //struct Element_ * next;
     Symbol  *  symbol; /**< for debugging hash conflicts */
     char       type;   /**< user-supplied type */
 } * Element;
@@ -58,11 +58,13 @@ typedef Element * Segment;
 typedef unsigned long int Hash_Table; //NOTE replaces the struct above
 
 typedef struct {
-    unsigned int i;  /**< segment index (i think) */
-    unsigned int j;  /**< key index in segment (ditto) */
-    Element p;       /**< usually the next element to be returned */
+//     unsigned int i;  /**< segment index (i think) */
+//     unsigned int j;  /**< key index in segment (ditto) */
+//     Element p;       /**< usually the next element to be returned */
     Hash_Table table;
-    char type;
+    unsigned int pos;  ///< marks position within the table
+
+    char search_type;  ///< used when searching for a specific type, otherwise '*'
     Element e;  /**< originally thought of as a place for
                  * the caller of HASHlist to temporarily stash the return value
                  * to allow the caller (i.e., DICTdo) to be macroized, but now
