@@ -26,6 +26,7 @@ include_directories(
     ${SCL_SOURCE_DIR}/include/exppp
     ${SCL_SOURCE_DIR}/include/express
     ${SCL_SOURCE_DIR}/src/base
+/usr/lib/gcc/x86_64-linux-gnu/4.7/include
 )
 
 IF(MSVC OR BORLAND)
@@ -37,5 +38,7 @@ IF ("${CMAKE_BUILD_TYPE}" MATCHES "Debug")
 ENDIF()
 
 SCL_ADDEXEC(fedex_plus "${fedex_plus_SOURCES} ${fedex_plus_EXTRA_SOURCES}" "libexppp express base")
+set_target_properties( fedex_plus PROPERTIES LINK_FLAGS "-L/usr/lib/x86_64-linux-gnu -fmudflap -lmudflap" COMPILE_FLAGS "-fmudflap" )
+
 
 add_dependencies( fedex_plus version_string )

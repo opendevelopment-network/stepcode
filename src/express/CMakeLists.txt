@@ -71,6 +71,8 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
 	${SCL_SOURCE_DIR}/src/base
+/usr/lib/gcc/x86_64-linux-gnu/4.7/include
+
 )
 
 add_definitions( -DFLEX )
@@ -82,7 +84,6 @@ endif()
 if(BORLAND)
     add_definitions( -D__STDC__ )
 endif()
-
 SCL_ADDLIB(express "${EXPRESS_SOURCES}" "base")
-
+set_target_properties( express PROPERTIES LINK_FLAGS "-L/usr/lib/x86_64-linux-gnu -fmudflap -lmudflap" COMPILE_FLAGS "-fmudflap")
 SCL_ADDEXEC("check-express" "${CHECK_EXPRESS_SOURCES} ${CHECK_EXPRESS_EXTRA_SOURCES}" express)
