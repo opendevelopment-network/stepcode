@@ -27,7 +27,7 @@ file( WRITE ${CMAKE_CURRENT_BINARY_DIR}/exch_file_good.p21      "${schema_name_t
 file( WRITE ${CMAKE_CURRENT_BINARY_DIR}/exch_file_good_asn.p21  "${schema_name_tests_head}${schema_name_good_asn}${schema_name_tests_tail}" )
 file( WRITE ${CMAKE_CURRENT_BINARY_DIR}/exch_file_mismatch.p21  "${schema_name_tests_head}${schema_name_mismatch}${schema_name_tests_tail}" )
 
-#these compare the schema name in a p21 file with than in the sdai lib
+#these compare the schema name in a p21 file with that in the sdai lib
 add_test( test_good_schema_name      ${p21read_ap214}    ${CMAKE_CURRENT_BINARY_DIR}/exch_file_good.p21 )
 add_test( test_good_schema_name_asn  ${p21read_ap214}    ${CMAKE_CURRENT_BINARY_DIR}/exch_file_good_asn.p21 )
 add_test( test_mismatch_schema_name  ${p21read_ap214}    ${CMAKE_CURRENT_BINARY_DIR}/exch_file_mismatch.p21 )
@@ -58,3 +58,7 @@ BUILD_A_SCHEMA(${SCL_SOURCE_DIR}/test/misc/select_segfault_210e3.exp)
 add_test( test_select_segfault ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/p21read_sdai_select_segfault_210e3
                                ${CMAKE_CURRENT_SOURCE_DIR}/select_segfault_210e3.stp )
 set_tests_properties( test_select_segfault PROPERTIES DEPENDS build_cpp_sdai_select_segfault_210e3 LABELS exchange_file WILL_FAIL TRUE )
+
+add_test( test_snippet_cd209_energy_unit ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/p21read_sdai_si_energy_unit_snippet
+                                         ${CMAKE_CURRENT_SOURCE_DIR}/snippet-ATS1-out.stp )
+set_tests_properties( test_snippet_cd209_energy_unit PROPERTIES DEPENDS build_cpp_sdai_si_energy_unit_snippet LABELS exchange_file )

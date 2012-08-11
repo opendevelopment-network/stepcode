@@ -1,0 +1,31 @@
+ISO-10303-21;
+HEADER;
+
+/******************************************************************************************
+* snippet from ATS1-out.stp
+*
+* ERROR:  ENTITY #637538260 Si_Energy_Unit
+*   name :    WARNING: attribute 'name' of type 'si_unit_name' - missing asterisk for derived attribute.
+*         Found invalid .JOU value...
+*         data lost looking for end of attribute: .JOULE.
+* ERROR in EXCHANGE FILE: incomplete instance #637538260.
+******************************************************************************************/
+
+FILE_DESCRIPTION((''),'2;1');
+FILE_NAME('snippet-ats1-out', '2012-08-11T12:00:00', (''), (''), 'hand edited', '', '');
+FILE_SCHEMA(('AP209_MULTIDISCIPLINARY_ANALYSIS_AND_DESIGN_MIM_LF'));
+ENDSEC;
+
+DATA;
+/* error with this instance: */
+#637538260= SI_ENERGY_UNIT((#637538262,#637538264,#637538266),*,$,.JOULE.);
+
+#637538262= DERIVED_UNIT_ELEMENT(#637538263,1.);
+#637538263= /* MASS_UNIT+SI_UNIT */(MASS_UNIT()NAMED_UNIT(*)SI_UNIT(.KILO.,.GRAM.));
+#637538264= DERIVED_UNIT_ELEMENT(#637538265,2.);
+#637538265= /* LENGTH_UNIT+SI_UNIT */(LENGTH_UNIT()NAMED_UNIT(*)SI_UNIT($,.METRE.));
+#637538266= DERIVED_UNIT_ELEMENT(#637538267,-2.);
+#637538267= /* SI_UNIT+TIME_UNIT */(NAMED_UNIT(*)SI_UNIT($,.SECOND.)TIME_UNIT());
+
+ENDSEC;
+END-ISO-10303-21;
