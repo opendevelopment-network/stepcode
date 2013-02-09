@@ -5,6 +5,8 @@
 #include <set>
 #include "lazyTypes.h"
 #include "scl_memmgr.h"
+#include "errordesc.h"
+#include "STEPcomplex.h"
 
 class SDAI_Application_instance;
 class lazyFileReader;
@@ -50,6 +52,7 @@ protected:
         }
     }
 
+    STEPcomplex * CreateSubSuperInstance( const Registry * reg, instanceID fileid, Severity & sev );
 public:
     SDAI_Application_instance * getRealInstance( const Registry * reg, long int begin, instanceID instance,
                                                  const std::string & typeName = "", const std::string & schName = "", bool header = false );
