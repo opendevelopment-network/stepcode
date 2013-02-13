@@ -56,7 +56,7 @@ protected:
     Registry * _headerRegistry, * _mainRegistry;
     ErrorDescriptor * _errors;
 
-    unsigned long _lazyInstanceCount;
+    unsigned long _lazyInstanceCount, _loadedInstanceCount;
     int _longestTypeNameLen;
     std::string _longestTypeName;
 
@@ -86,7 +86,7 @@ public:
     }
     /// get the number of instances of a certain type
     unsigned int countInstances( std::string type ) {
-        instanceTypes_t::cvector *v = _instanceTypes->find( type.c_str() );
+        instanceTypes_t::cvector * v = _instanceTypes->find( type.c_str() );
         if( !v ) {
             return 0;
         }
@@ -97,8 +97,13 @@ public:
     }
 
     /// get the number of instances that have been found in the open files.
-    unsigned long countInstances() const {
+    unsigned long totalInstanceCount() const {
         return _lazyInstanceCount;
+    }
+
+    /// get the number of instances that are loaded.
+    unsigned long loadedInstanceCount() const {
+        return _loadedInstanceCount;
     }
 
     /// get the number of data sections that have been identified
