@@ -32,11 +32,11 @@ SDAI_Application_instance NilSTEPentity;
 
 SDAI_Application_instance::SDAI_Application_instance()
     :  _cur( 0 ), STEPfile_id( 0 ), headMiEntity( 0 ), nextMiEntity( 0 ),
-       _complex( 0 ) {
+       _complex( 0 ), eDesc( 0 ) {
 }
 
 SDAI_Application_instance::SDAI_Application_instance( int fileid, int complex )
-    :  _cur( 0 ), STEPfile_id( fileid ), headMiEntity( 0 ), nextMiEntity( 0 ), _complex( complex ) {
+    :  _cur( 0 ), STEPfile_id( fileid ), headMiEntity( 0 ), nextMiEntity( 0 ), _complex( complex ), eDesc( 0 ) {
 }
 
 SDAI_Application_instance::~SDAI_Application_instance() {
