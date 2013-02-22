@@ -149,6 +149,12 @@ public:
     SDAI_Application_instance * loadInstance( instanceID id );
 
     /* TODO implement these
+     *    //list all instances that one instance depends on (recursive)
+     *    std::vector<instanceID> instanceDependencies( instanceID id ); //set is faster?
+     *    //the opposite of instanceDependencies() - all instances that are *not* dependencies of one particular instance
+     *    // same as above, but with list of instances
+     *    std::vector<instanceID> notDependencies(...)
+
      *    //renumber instances so that they are numbered 1..N where N is the total number of instances
      *    void normalizeInstanceIds();
      *    //find data that is repeated and eliminate, if possible
@@ -157,7 +163,7 @@ public:
      *    void useDataSection( sectionID id );
      */
     // TODO support references from one file to another
-    // TODO registry
+    
 
 };
 
